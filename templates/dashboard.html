@@ -61,5 +61,48 @@
     </div>
 </div>
 
+<h2 style="margin-top:40px;">🚚 Trips Table</h2>
+
+<!-- Filter Form -->
+<form method="get" style="margin-bottom: 20px;">
+    <input type="text" name="truck_number" placeholder="Truck Number" value="{{ request.args.get('truck_number','') }}">
+    <select name="status">
+        <option value="">All</option>
+        <option value="active" {% if request.args.get('status')=='active' %}selected{% endif %}>Active</option>
+        <option value="completed" {% if request.args.get('status')=='completed' %}selected{% endif %}>Completed</option>
+    </select>
+    Start Date: <input type="date" name="start_date" value="{{ request.args.get('start_date','') }}">
+    End Date: <input type="date" name="end_date" value="{{ request.args.get('end_date','') }}">
+    <button type="submit">Filter</button>
+</form>
+
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%; border-collapse: collapse; background: white; margin-bottom: 40px;">
+    <thead style="background: #2980b9; color: white;">
+        <tr>
+            <th>Trip ID</th>
+            <th>Truck Number</th>
+            <th>Gate IN</th>
+            <th>Gate OUT</th>
+            <th>Turnaround (min)</th>
+            <th>Empty Weight</th>
+            <th>Loaded Weight</th>
+            <th>Ash Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trip in trips %}
+        <tr>
+            <td>{{ trip.id }}</td>
+            <td>{{ trip.truck.truck_number }}</td>
+            <td>{{ trip.gate_in_time or '-' }}</td>
+            <td>{{ trip.gate_out_time or '-' }}</td>
+            <td>{{ trip.turnaround_minutes or '-' }}</td>
+            <td>{{ trip.empty_weight or '-' }}</td>
+            <td>{{ trip.loaded_weight or '-' }}</td>
+            <td>{{ trip.ash_quantity or '-' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>

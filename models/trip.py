@@ -17,3 +17,4 @@ class Trip(db.Model):
     turnaround_minutes = db.Column(db.Float)
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    truck = db.relationship("Truck", backref="trips")

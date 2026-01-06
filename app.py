@@ -15,16 +15,20 @@ def create_app():
     migrate.init_app(app, db)
 
     from routes.trucks import truck_bp
+    from routes.gates import gate_bp
+    from routes.dashboard import dashboard_bp
+    from routes.weighbridge import weighbridge_bp
 
     app.register_blueprint(truck_bp)
-
-    from routes.gates import gate_bp
-
     app.register_blueprint(gate_bp)
+    app.register_blueprint(dashboard_bp)
+    app.register_blueprint(weighbridge_bp)
+
+    from flask import redirect
 
     @app.route("/")
-    def health():
-        return {"status": "Vehicle Delivery MVP running"}
+    def home():
+        return redirect("/dashboard/")
 
     return app
 

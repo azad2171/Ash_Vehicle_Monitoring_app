@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from database import db
+from flask import render_template
 
 migrate = Migrate()
 
@@ -28,7 +29,7 @@ def create_app():
 
     @app.route("/")
     def home():
-        return redirect("/dashboard/")
+        return render_template("home.html")
 
     return app
 

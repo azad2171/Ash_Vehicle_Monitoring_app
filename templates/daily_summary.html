@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Daily Ash Utilization Summary</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>📅 Daily Ash Utilization Summary</h2>
+
+    <form method="get" style="margin-bottom:15px;">
+        Start Date: <input type="date" name="start_date" value="{{ request.args.get('start_date','') }}">
+        End Date: <input type="date" name="end_date" value="{{ request.args.get('end_date','') }}">
+        <button type="submit">Filter</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Date</th>
+                <th colspan="2">Bagging</th>
+                <th colspan="2">Bulkers</th>
+                <th colspan="2">Rake</th>
+                <th rowspan="2">Remarks</th>
+            </tr>
+            <tr>
+                <th>Nos</th>
+                <th>MT</th>
+                <th>Nos</th>
+                <th>MT</th>
+                <th>Nos</th>
+                <th>MT</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in summary %}
+            <tr>
+                <td>{{ row.date }}</td>
+                <td>{{ row.bagging_nos }}</td>
+                <td>{{ row.bagging_mt }}</td>
+                <td>{{ row.bulkers_nos }}</td>
+                <td>{{ row.bulkers_mt }}</td>
+                <td>{{ row.rake_nos }}</td>
+                <td>{{ row.rake_mt }}</td>
+                <td>{{ row.remarks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>

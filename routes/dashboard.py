@@ -6,6 +6,10 @@ from datetime import datetime
 from database import db
 from services.daily_summary_service import get_daily_summary
 from datetime import datetime
+from datetime import date
+from services.silo_balance_service import calculate_daily_balance
+from models.daily_silo_balance import DailySiloBalance
+from models.silo import Silo
 
 dashboard_bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
@@ -63,3 +67,23 @@ def daily_summary_view():
     summary = get_daily_summary(start_date, end_date)
 
     return render_template("daily_summary.html", summary=summary, request=request)
+
+
+@dashboard_bp.route("/daily-balance", methods=["GET", "POST"])
+def daily_balance_view():
+    selected_date = request.args.get("date")
+
+    if not selected_date:
+        selected_date = date.today()
+
+    else:
+        selected_date = date.fromisoformat(selected_date)
+
+    # Calculate balances (safe to call multiple times)
+    calculate_daily_balance(selected_date)
+
+    balances = DailySiloBalance.query.filter_by(date=selected_date).join(Silo).all()
+
+    return render_template(
+        "daily_balance.html", balances=balances, selected_date=selected_date
+    )

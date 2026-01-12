@@ -80,6 +80,39 @@
         <a href="/dashboard/">📊 Dashboard</a>
     </p>
 
+    <h3 style="margin-top:30px;">🚚 Daily Dispatch Summary</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Trips (Nos)</th>
+                <th>Quantity (MT)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>BAGGING</td>
+                <td>{{ dispatch_summary["BAGGING"]["nos"] }}</td>
+                <td>{{ dispatch_summary["BAGGING"]["mt"] }}</td>
+            </tr>
+            <tr>
+                <td>BULKERS</td>
+                <td>{{ dispatch_summary["BULKERS"]["nos"] }}</td>
+                <td>{{ dispatch_summary["BULKERS"]["mt"] }}</td>
+            </tr>
+            <tr>
+                <td>RAKE</td>
+                <td>{{ dispatch_summary["RAKE"]["nos"] }}</td>
+                <td>{{ dispatch_summary["RAKE"]["mt"] }}</td>
+            </tr>
+            <tr style="font-weight:bold; background:#f0f0f0;">
+                <td>TOTAL</td>
+                <td>{{ total_nos }}</td>
+                <td>{{ total_mt }}</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>

@@ -1,0 +1,42 @@
+<h2>📋 Registered Trucks</h2>
+
+{% if trucks %}
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Truck Number</th>
+            <th>QR Generated</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for truck in trucks %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ truck.truck_number }}</td>
+            <td>
+                {% if truck.qr_image_path %}
+                ✅ Yes
+                {% else %}
+                ❌ No
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ url_for('trucks.view_truck', truck_id=truck.id) }}">
+                    View
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No trucks registered yet.</p>
+{% endif %}
+
+<br>
+<p>
+    <a href="{{ url_for('trucks.register_truck_ui') }}">🆕 Register New Truck</a> |
+    <a href="{{ url_for('home') }}">🏠 Home</a>
+</p>

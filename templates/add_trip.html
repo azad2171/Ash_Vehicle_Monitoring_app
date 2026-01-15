@@ -1,0 +1,48 @@
+<h2>🚚 Add Dispatch Trip</h2>
+
+<form method="post">
+
+    <label>Truck</label><br>
+
+    <label>Truck</label><br>
+    <select name="truck_id" required>
+        {% for truck in trucks %}
+        <option value="{{ truck.id }}"
+                {% if prefill_truck_id and truck.id == prefill_truck_id|int %}
+                selected
+                {% endif %}
+                >
+                {{ truck.truck_number }}
+        </option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Trip Type</label><br>
+    <select name="trip_type" required>
+        <option value="BAGGING">BAGGING</option>
+        <option value="BULKERS">BULKERS</option>
+        <option value="RAKE">RAKE</option>
+    </select><br><br>
+
+    <label>Silo</label><br>
+    <select name="silo_id" required>
+        {% for silo in silos %}
+        <option value="{{ silo.id }}">{{ silo.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Party</label><br>
+    <select name="party_id" required>
+        {% for party in parties %}
+        <option value="{{ party.id }}">{{ party.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Ash Quantity (MT)</label><br>
+    <input type="number" step="0.01" name="ash_quantity" required><br><br>
+
+    <button type="submit">Save Trip</button>
+
+</form>
+
+<p><a href="/">⬅ Home</a></p>

@@ -45,6 +45,45 @@
 
 <body>
 
+    <h1>🚚 Vehicle Delivery Management</h1>
+
+    <ul>
+        <li>
+            <a href="{{ url_for('trucks.add_trip') }}">
+                🚚 Add Dispatch Trip
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('inflow.add_inflow') }}">
+                ➕ Add Silo Inflow
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('trucks.register_truck_ui') }}">
+                🆕 Register New Truck
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('dashboard.daily_balance_view') }}">
+                📊 Daily Monitoring
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('dashboard.daily_summary_view') }}">
+                📅 Daily Summary
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('trucks.list_trucks') }}">
+                📋 View Trucks
+            </a>
+        </li>
+    </ul>
+
     <h1>🚚 Vehicle Delivery Management System</h1>
     <p>Centralized platform for truck tracking, turnaround time, and ash utilization</p>
 

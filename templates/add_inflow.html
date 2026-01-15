@@ -1,0 +1,22 @@
+
+<h2>➕ Add Silo Inflow</h2>
+
+<form method="post">
+    <label>Silo</label><br>
+    <select name="silo_id" required>
+        {% for silo in silos %}
+            <option value="{{ silo.id }}">{{ silo.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Quantity (MT)</label><br>
+    <input type="number" step="0.01" name="quantity" required><br><br>
+
+    <label>Remarks</label><br>
+    <input type="text" name="remarks"><br><br>
+
+    <button type="submit">Save Inflow</button>
+</form>
+
+<p><a href="{{ url_for('home') }}">⬅ Home</a></p>
+

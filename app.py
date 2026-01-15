@@ -19,7 +19,11 @@ def create_app():
     from routes.gates import gate_bp
     from routes.dashboard import dashboard_bp
     from routes.weighbridge import weighbridge_bp
+    from routes.inflow import inflow_bp
+    from routes.qr import qr_bp
 
+    app.register_blueprint(qr_bp)
+    app.register_blueprint(inflow_bp)
     app.register_blueprint(truck_bp)
     app.register_blueprint(gate_bp)
     app.register_blueprint(dashboard_bp)

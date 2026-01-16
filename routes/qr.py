@@ -12,4 +12,4 @@ def scan_qr(qr_code):
         abort(404, description="Invalid QR code")
 
     # Redirect to Add Trip page with truck prefilled
-    return redirect(url_for("trucks.add_trip", truck_id=truck.id))
+    return redirect(url_for("gates.gate_in", truck_id=truck.id))

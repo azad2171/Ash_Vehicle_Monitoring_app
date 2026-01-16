@@ -48,9 +48,16 @@
     <h1>🚚 Vehicle Delivery Management</h1>
 
     <ul>
+
         <li>
-            <a href="{{ url_for('trucks.add_trip') }}">
-                🚚 Add Dispatch Trip
+            <a href="{{ url_for('gates.gate_in') }}">
+                🚪 Gate IN (Truck Entry)
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('gates.gate_out') }}">
+                🚪 Gate OUT (Truck Exit)
             </a>
         </li>
 
